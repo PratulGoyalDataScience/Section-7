@@ -4,15 +4,17 @@ on:
     branches:
       - main
       - dev
+
 env:
-  MONGODB_DB_NAME: gha-demo        
+  MONGODB_DB_NAME: gha-demo
+
 jobs:
   test:
-      env:
-        MONGODB_CLUSTER_ADDRESS: cluster0.6gemppy.mongodb.net
-        MONGODB_USERNAME: Pratul
-        MONGODB_PASSWORD: 5sWyTp6DuBtGbvik
-        PORT: 8080
+    env:
+      MONGODB_CLUSTER_ADDRESS: cluster0.6gemppy.mongodb.net
+      MONGODB_USERNAME: Pratul
+      MONGODB_PASSWORD: 5sWyTp6DuBtGbvik
+      PORT: 8080
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -30,6 +32,7 @@ jobs:
         run: npm test
       - name: Output information
         run: echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
+
   deploy:
     needs: test
     runs-on: ubuntu-latest
